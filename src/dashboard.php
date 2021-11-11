@@ -4,8 +4,8 @@ checkSession();
 
 function getBaseUrl()
 {
-    $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === 0 ? 'https://' : 'http://';
-    return $protocol . $_SERVER['HTTP_HOST'];
+  $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === 0 ? 'https://' : 'http://';
+  return $protocol . $_SERVER['HTTP_HOST'];
 }
 
 $baseUrl = getBaseUrl();
@@ -61,81 +61,6 @@ $baseUrl = getBaseUrl();
 
   <div class="container-fluid">
     <div class="row">
-      <!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                <span data-feather="home"></span>
-                Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file"></span>
-                Orders
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="shopping-cart"></span>
-                Products
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="users"></span>
-                Customers
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="bar-chart-2"></span>
-                Reports
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="layers"></span>
-                Integrations
-              </a>
-            </li>
-          </ul>
-
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Saved reports</span>
-            <a class="link-secondary" href="#" aria-label="Add a new report">
-              <span data-feather="plus-circle"></span>
-            </a>
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Current month
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Last quarter
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Social engagement
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Year-end sale
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav> -->
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -155,135 +80,125 @@ $baseUrl = getBaseUrl();
         <div id="jsGrid"></div>
 
         <script>
-
           var clients = (function() {
-                  var json = null;
-                  $.ajax({
-                      'async': false,
-                      'global': false,
-                      'url': "../resources/employees.json",
-                      'dataType': "json",
-                      'success': function (data) {
-                          json = data;
-                      }
-                  });
-                  return json;
+            var json = null;
+            $.ajax({
+              'async': false,
+              'global': false,
+              'url': "../resources/employees.json",
+              'dataType': "json",
+              'success': function(data) {
+                json = data;
+              }
+            });
+            return json;
           })();
-      
-          $("#jsGrid").jsGrid({
-              width: "100%",
-              height: "600px",
-      
-              inserting: true,
-              editing: true,
-              sorting: true,
-              paging: true,
-      
-              data: clients,
-      
-              fields: [
-                  { name: "name", type: "text", width: 70, validate: "required" },
-                  { name: "lastName", type: "text", width: 80, validate: "required" },
-                  { name: "email", type: "text", width: 80, validate: "required" },
-                  { name: "age", type: "number", width: 25 },
-                  { name: "postalCode", type: "number", width: 30 },
-                  { name: "phoneNumber", type: "number", width: 40 },
-                  { name: "state", type: "text", width: 50 },
-                  { name: "gender", type: "text", width: 20 },
-                  { name: "city", type: "text", width: 80 },
-                  { name: "streetAddress", type: "text", width: 50 },
-                  { type: "control" }
-              ]
-          });
-        
-    </script>
 
-        <!-- <h2>Section title</h2>
-        <div class="table-responsive">
-          <table class="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-              </tr>
-              <tr>
-                <td>1,002</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,004</td>
-                <td>text</td>
-                <td>random</td>
-                <td>layout</td>
-                <td>dashboard</td>
-              </tr>
-              <tr>
-                <td>1,005</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>placeholder</td>
-              </tr>
-              <tr>
-                <td>1,006</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,007</td>
-                <td>placeholder</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>irrelevant</td>
-              </tr>
-              <tr>
-                <td>1,008</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-              </tr>
-              <tr>
-                <td>1,009</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> -->
+          $("#jsGrid").jsGrid({
+            width: "100%",
+            height: "600px",
+
+            inserting: true,
+            editing: true,
+            sorting: true,
+            paging: true,
+            autoload: true,
+            deleteConfirm: "Do you really want to delete data?",
+
+
+            controller: {
+              loadData: function(filter) {
+                return $.ajax({
+                  type: "GET",
+                  url: "fetch_data.php",
+                  data: filter
+                });
+              },
+              insertItem: function(item) {
+                return $.ajax({
+                  type: "POST",
+                  url: "fetch_data.php",
+                  data: item
+                });
+              },
+              updateItem: function(item) {
+                return $.ajax({
+                  type: "PUT",
+                  url: "fetch_data.php",
+                  data: item
+                });
+              },
+              deleteItem: function(item) {
+                return $.ajax({
+                  type: "DELETE",
+                  url: "fetch_data.php",
+                  data: item
+                });
+              },
+            },
+
+
+            data: clients,
+
+            fields: [{
+                name: "name",
+                type: "text",
+                width: 50,
+                validate: "required"
+              },
+              {
+                name: "lastName",
+                type: "text",
+                width: 60,
+                validate: "required"
+              },
+              {
+                name: "email",
+                type: "text",
+                width: 70,
+                validate: "required"
+              },
+              {
+                name: "age",
+                type: "number",
+                width: 25
+              },
+              {
+                name: "postalCode",
+                type: "number",
+                width: 30
+              },
+              {
+                name: "phoneNumber",
+                type: "number",
+                width: 40
+              },
+              {
+                name: "state",
+                type: "text",
+                width: 50
+              },
+              {
+                name: "gender",
+                type: "text",
+                width: 20
+              },
+              {
+                name: "city",
+                type: "text",
+                width: 60
+              },
+              {
+                name: "streetAddress",
+                type: "text",
+                width: 50
+              },
+              {
+                type: "control"
+              }
+            ]
+          });
+        </script>
       </main>
     </div>
   </div>
