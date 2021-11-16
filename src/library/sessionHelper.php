@@ -63,36 +63,27 @@ function authUser()
         header("Location:../dashboard.php");
     } else {
         $_SESSION["loginError"] = "Wrong email or password!";
-        header("Location:../index.php");
+        header("Location:../../index.php");
     }
 }
 
 function checkUser(string $email, string $pass)
 {
-    // $emailDb = "name@mail.com";
-    // $passDb = "12345";
 
-    $jsonData = file_get_contents('./../resources/users.json');
-    $emailData = json_decode($jsonData, true);
+    $jsonData = file_get_contents('../../resources/users.json');
+    $usersData = json_decode($jsonData, true);
+    $users = $usersData["users"];
+    foreach ($users as $user) {
 
-    foreach ($emailData as $mail) {
-        if (array_search($email, $mail) !== false) {
-            $currentEmail = $mail;
+        if (array_search($email, $user) !== false) {
+            $currentUser = $user;
         }
     }
-
-    if (isset($currentEmail) && password_verify($pass, $currentEmail["password"])) {
+    if (isset($currentUser) && password_verify($pass, $currentUser["password"])) {
         return true;
     } else {
         return false;
     }
-
-    // Password must be encrypted in any way
-    // $passDbEnc = password_hash($passDb, PASSWORD_DEFAULT);
-
-    // check if email and password are correct
-    //if ($email == $emailDb && password_verify($pass, $passDbEnc)) return true;
-    //else return false;
 }
 
 function destroySessionCookie()

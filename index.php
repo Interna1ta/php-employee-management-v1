@@ -57,6 +57,35 @@ $alert = checkSession();
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
 
     </form>
+
+    <?php
+      
+
+      $jsonData = file_get_contents('resources/users.json');
+      $usersData = json_decode($jsonData, true);
+      $users = $usersData["users"];
+      $email = "admin@assemblerschool.com";
+      foreach ($users as $user) {
+        echo "<pre>";
+        print_r($user["email"]);
+        echo "</pre>";
+          if (array_search($email, $user) !== false) {
+              $currentUser = $user;
+              //print_r($currentUser);
+              echo "yes";
+          }
+      }
+      //echo $currentUser["password"];
+      $pass = "123456";
+      if (isset($currentUser) && password_verify($pass, $currentUser["password"])) {
+        echo "inside";
+          return true;
+      } else {
+        echo "outside";
+          return false;
+      }
+    ?>
+
   </main>
 
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
